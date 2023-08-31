@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	  <meta name="viewport" content="width-device,initial-scale=1.0">
+	  
+	  <title>js-start</title>
+	  </head>
+<body>	  
+	  <h1>ES6-class</h1>
+
+
+
+				
+<h1> functions use callback functions</h1>
+<script>
+
+    function add(e,f){
+	    
+		return e+f
+	 }
+	 function display(a,b,c){
+	      let d=c(a,b)
+	       <!-- console.log(d) -->
+         return d
+	   }
+	 console.log(display(7,3,add))//output-10
+</script>
+<script>
+   function mul(e,f,g){
+       let h=e*f;
+	   console.log(h)
+	  return g(h)   
+   }
+   function div(h){
+     if(h%2==0){
+	  console.log("it is even")
+	  }
+	 else{
+	    console.log("it is odd")
+	  }
+   }
+   function display(a,b,c){
+        let x= c(a,b,div)
+		 console.log(x)
+   }
+  display(9,3,mul)   
+    //output-it is odd
+</script>
+<script>
+function palin(a){
+   let sum=0;
+   while(a!=0){
+      let rem=a%10;
+	   a=(a-rem)/10;
+	   sum=(sum*10)+rem
+      }
+	 return sum
+	  }
+function display(a){
+    let c=palin(a);
+ if(c==a){
+    console.log("palindrom")
+ }
+ else{
+     console.log("not a palindrom")
+ }
+		   
+}
+display(121)   
+//palindrom
+</script>
+<script>
+function arm(a){
+   let sum=0;
+   while(a!=0){
+      let rem=a%10;
+	   a=(a-rem)/10;
+	   sum=sum+(rem*rem*rem)
+      }
+	 return sum
+	  }
+function display(a){
+    let c=arm(a);
+ if(c==a){
+    console.log("armstrong")
+ }
+ else{
+     console.log("not a armstrong")
+ }
+		   
+}
+display(407)   
+//output-armstrong
+</script>
+<script>
+   function palistr(a){
+        let b=""
+        for(i=a.length-1;i>=0;i--){
+		b+=a[i]
+		}
+   return b
+   
+   
+   }
+   function check(a){
+      let z=palistr(a)
+	  if(z==a){
+	     console.log("it palindrom")
+	  }
+	  else{
+	     console.log("not a palindrom")
+	  }
+   }
+   check("appa")
+   //output-it palindrom
+
+
+
+</script>
+<script>
+  function rev(a){
+   let sum=0
+   while(a!=0){
+      let rem=a%10
+	  a=(a-rem)/10
+	  sum=(sum*10)+rem
+     }
+      return sum;
+	 }
+  
+  function dis(a){
+      let c=rev(a)
+	  console.log(c)
+	  
+	  
+  }
+  dis(321)
+  //output-123
+</script>
+<h1>Hoisting</h1>
+<script>
+     console.log(a)
+	   var a=5//undefined
+	   
+	  <!-- console.log(b) -->
+       <!-- let b=3	//error   -->
+	   console.log(bb)
+	   const bb=6
+	   //error
+</script>
+
+<h1>defalt param</h1>
+<script>
+function add(a,b){
+console.log(a+b)
+}
+add(5)
+//output-NaN
+
+function add(c,d=0){
+console.log(c+d)
+}
+add(5)
+//output-5
+
+</script>
+
+<h1>shallow copy and deep copy</h1>
+<h2>deepcopy</h2>
+<script>
+    var x=8;
+	var y=x;
+	x=-3
+	console.log(x,y)
+	//output-(-3,8)
+</script>
+<h2>shallowcopy</h2>
+
+<script>
+   let k={a:1,b:2}
+   let l=k;
+    k.c=3;
+	 console.log(k,l)
+	 //output-{a: 1, b: 2, c: 3} {a: 1, b: 2, c: 3}
+</script>
+<h1> spread operator</h1>
+<script>
+   let c={a:1,b:2}
+     let d={...c}
+	 d.c=3;
+	 console.log(c,d)
+	 //output-{a: 1, b: 2} {a: 1, b: 2, c: 3}
+	 
+	 
+	 let e=[1,2,3]
+	 let f=[...e]
+        f.push(4)
+       console.log(e,f)	
+//output-(3) [1, 2, 3] (4) [1, 2, 3, 4]	   
+</script>
+<h1> json stringify</h1>
+<script>
+ let user={
+         name:"sss",
+		 age:22,
+		 course:"bsc"}
+		 let ad=JSON.stringify(user)
+		 console.log(ad)//output-{"name":"sss","age":22,"course":"bsc"}
+		 console.log(user,JSON.parse(ad))//output-{name: 'sss', age: 22, course: 'bsc'} {name: 'sss', age: 22, course: 'bsc'}
+		 
+		 let q=["fruit","vegitable","animals"]
+		 let w=JSON.parse(JSON.stringify(q))
+		  w.push("birds")
+		  console.log(w)//output- ['fruit', 'vegitable', 'animals', 'birds']
+		  
+ </script>
+ <h1>object assign</h1>
+<script> 
+ let i={name:"kkkkk",
+		age:22}
+		let z=Object.assign({},i)
+		z.k="eeee"
+		console.log(z)
+		console.log(i)
+		//output-{name: 'kkkkk', age: 22, k: 'eeee'}
+            //output- {name: 'kkkkk', age: 22}
+		
+  let s=[1,5,3]
+     let g=Object.assign([],s)
+        g.push(7)
+       console.log(g)//output- [1, 5, 3, 7]
+ 
+	   
+       console.log(s)//output-[1, 5, 3]	   
+</script>
+<h1>with argument with return</h1>
+<script>
+function add(a,b){
+let c=a+b;
+
+return c;    
+}
+let j=add(3,4)
+console.log(j)
+document.write(j)//7
+</script>
+<h1>with argument with out return</h1>
+<script>
+function add(a,b){
+let c=a+b;
+
+console.log(c)    
+}
+let m=add(3,3)
+console.log(m);
+document.write(m)//6
+</script>
+<h1>without argument with return</h1>
+<script>
+function add(a,b){
+let c=a+b;
+
+return c    
+}
+let n=add(7,3)
+console.log(n);
+document.write(m)//10
+
+</script>
+<h1>without argument without return</h1>
+<script>
+function add(){
+let a=10;
+let b=3;
+let o=a+b;
+console.log(o)
+
+    
+}
+add()
+//output-13
+
+</script>
+<h1>set interval using(arrow function)</h1>
+<script>
+<!-- setInterval(()=>{ -->
+            <!-- console.log("I am kalai") -->
+     <!-- },2000)			 -->
+</script>
+<h1>set timeout</h1>
+<script>
+   function ka(){
+           console.log("i am kalaiyarasan")
+		   }
+		   setTimeout(ka,2000)
+		   //i am kalaiyarasan
+</script>
+<h1>set timeout</h1>
+<script>
+   function ba(){
+           console.log("i am kalaiyarasan")
+		   }
+		   let aaa=setInterval(ka,2000)
+		   clearInterval(aaa)
+		   //i am kalaiyarasan clear 
+</script>
+</body>
